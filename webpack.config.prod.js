@@ -1,21 +1,7 @@
-const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const merge = require('webpack-merge')
+const commonConfig = require('./webpack.config.common')
 
-module.exports = {
+module.exports = merge(commonConfig, {
   mode: 'production',
   devtool: 'source-map',
-  entry: './src/index.js',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      inject: true,
-      template: path.resolve(__dirname, 'src', 'index.html'),
-    }),
-  ]
-}
+})
